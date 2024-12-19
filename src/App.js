@@ -1,11 +1,12 @@
 import React from 'react';
 import SearchBar from './compenent/SearchBar';
+import DataTable from './compenent/createrep';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <SearchBar></SearchBar>
+      <DataTable></DataTable>
     </div>
   );
 }

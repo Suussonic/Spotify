@@ -1,0 +1,116 @@
+{
+    "artistes": [
+      {
+        "id": "1",
+        "nom": "Alice Harmony",
+        "nombreDAbonnes": 350000,
+        "genres": [
+          "Indie Pop",
+          "Acoustic"
+        ],
+        "image": "https://source.unsplash.com/random/1",
+        "biographie": "Alice Harmony est une chanteuse et compositrice passionnée par les sons de la nature."
+      }
+    ],
+    "albums": [
+      {
+        "id": "1734606242460",
+        "nom": "Whispers of the Forest",
+        "dateDeCreation": "2021-08-15",
+        "description": "Un album inspiré par les sons apaisants de la forêt.",
+        "artisteId": "1",
+        "image": "https://source.unsplash.com/random/2"
+      },
+      {
+        "id": "1734606257684",
+        "nom": "Silent Dreams",
+        "dateDeCreation": "2022-04-10",
+        "description": "Un album doux et rêveur.",
+        "artisteId": "1",
+        "image": "https://source.unsplash.com/random/3"
+      }
+    ],
+    "sons": [
+      {
+        "id": "1734606270749",
+        "nom": "Echoes in the Trees",
+        "dateDeCreation": "2021-08-20",
+        "duree": "3:45",
+        "featuring": [],
+        "genre": "Acoustic",
+        "albumId": "101",
+        "artisteId": "1",
+        "image": "https://source.unsplash.com/random/4"
+      },
+      {
+        "id": "1734606277850",
+        "nom": "Morning Dew",
+        "dateDeCreation": "2021-08-25",
+        "duree": "4:20",
+        "featuring": [
+          "Liam Strings"
+        ],
+        "genre": "Indie Pop",
+        "albumId": "101",
+        "artisteId": "1",
+        "image": "https://source.unsplash.com/random/5"
+      },
+      {
+        "id": "1734606285926",
+        "nom": "Forest Whisper",
+        "dateDeCreation": "2021-09-01",
+        "duree": "5:00",
+        "featuring": [],
+        "genre": "Ambient",
+        "albumId": "101",
+        "artisteId": "1",
+        "image": "https://source.unsplash.com/random/6"
+      },
+      {
+        "id": "1734606295505",
+        "nom": "Starry Night",
+        "dateDeCreation": "2022-04-15",
+        "duree": "3:50",
+        "featuring": [],
+        "genre": "Ambient",
+        "albumId": "102",
+        "artisteId": "1",
+        "image": "https://source.unsplash.com/random/7"
+      },
+      {
+        "id": "1734606302117",
+        "nom": "Moonlit Path",
+        "dateDeCreation": "2022-04-20",
+        "duree": "4:10",
+        "featuring": [
+          "Ethan Sound"
+        ],
+        "genre": "Instrumental",
+        "albumId": "102",
+        "artisteId": "1",
+        "image": "https://source.unsplash.com/random/8"
+      },
+      {
+        "id": "1734606310106",
+        "nom": "Solo Breeze",
+        "dateDeCreation": "2023-01-05",
+        "duree": "2:50",
+        "featuring": [],
+        "genre": "Instrumental",
+        "artisteId": "1",
+        "image": "https://source.unsplash.com/random/9"
+      },
+      {
+        "id": "1734606317443",
+        "nom": "Ocean Waves",
+        "dateDeCreation": "2023-02-10",
+        "duree": "4:30",
+        "featuring": [
+          "Ethan Sound"
+        ],
+        "genre": "Ambient",
+        "artisteId": "1",
+        "image": "https://source.unsplash.com/random/10"
+      }
+    ]
+  }

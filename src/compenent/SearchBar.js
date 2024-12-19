@@ -1,40 +1,32 @@
-// SearchBar.js
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import '../css/SearchBar.css';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import "../css/SearchBar.css";
 
 const SearchBar = ({ onSearch }) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   const handleInputChange = (e) => {
     setQuery(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
     if (onSearch) {
-      onSearch(query);
+      onSearch(e.target.value);
     }
   };
 
   return (
-    <form className="search-bar" onSubmit={handleSubmit}>
+    <div className="search-bar-container">
       <input
         type="text"
-        placeholder="Recherchez..."
+        placeholder="Rechercher albums ou musiques..."
         value={query}
         onChange={handleInputChange}
         className="search-input"
       />
-      <button type="submit" className="search-button">
-        Rechercher
-      </button>
-    </form>
+    </div>
   );
 };
 
 SearchBar.propTypes = {
-  onSearch: PropTypes.func,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
