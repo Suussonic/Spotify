@@ -59,3 +59,32 @@
     display: block;
     margin-top: 5px;
 }
+
+/* Adjusted top bar for better layout */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.search-bar {
+    flex: 1;
+}
+
+.add-song-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap; /* Ensures the button text doesn't wrap */
+}
+
+.add-song-button:hover {
+    background-color: #0056b3;
+}

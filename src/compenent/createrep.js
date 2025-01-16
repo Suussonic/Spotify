@@ -1,82 +1,59 @@
-import React, { useState } from "react";
-import data from "./music.json"; // Importez vos données JSON
-import SearchBar from "./SearchBar"; // Importez la barre de recherche
-import Popup from "./popup"; // Importez la popup
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Pour la navigation
 import "../css/createrep.css"; // Importez le fichier CSS
 
 const DataTable = () => {
-  const [query, setQuery] = useState("");
-  const [selectedAlbum, setSelectedAlbum] = useState(null);
+  const [songs, setSongs] = useState([]);
+  const navigate = useNavigate();
 
-  // Fusionner albums et musiques hors albums
-  const allItems = [
-    ...data.albums.flatMap((album) =>
-      album.sons ? [
-        { ...album, type: "album" },
-        ...album.sons.map((son) => ({
-          ...son,
-          albumName: album.nom,
-          type: "song",
-        })),
-      ] : []
-    ),
-    ...data.sons.map((son) => ({ ...son, type: "song", albumName: null })),
-  ];
+  // Charger les données depuis l'API
+  useEffect(() => {
+    fetch("http://localhost:3000/api/sons")
+      .then((response) => response.json())
+      .then((data) => setSongs(data))
+      .catch((error) => console.error("Erreur lors de la récupération des sons :", error));
+  }, []);
 
-  // Filtrer les éléments en fonction de la recherche
-  const filteredItems = allItems.filter((item) => {
-    const lowerCaseQuery = query.toLowerCase();
-    return (
-      item.nom.toLowerCase().includes(lowerCaseQuery) ||
-      (item.featuring &&
-        item.featuring.some((feat) =>
-          feat.toLowerCase().includes(lowerCaseQuery)
-        )) ||
-      (item.albumName && item.albumName.toLowerCase().includes(lowerCaseQuery))
-    );
-  });
-
-  // Fonction pour ouvrir la popup
-  const openPopup = (album) => {
-    if (album.sons && album.sons.length > 0) {
-      setSelectedAlbum(album);
-    }
-  };
-
-  // Fonction pour fermer la popup
-  const closePopup = () => {
-    setSelectedAlbum(null);
+  // Fonction pour rediriger vers la page d'ajout de son
+  const handleAddSong = () => {
+    navigate("/adds");
   };
 
   return (
     <div className="data-table-container">
-      {/* Barre de recherche */}
-      <SearchBar onSearch={(q) => setQuery(q)} />
+      <div className="top-bar">
+        {/* Barre de recherche */}
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="Rechercher des sons..."
+        />
+        {/* Bouton Ajouter un son */}
+        <button className="add-song-button" onClick={handleAddSong}>
+          Ajouter un son
+        </button>
+      </div>
 
       <div className="table-wrapper">
         <table className="data-table">
           <tbody>
-            {filteredItems.map((item, index) => (
-              <tr
-                key={index}
-                className={item.type === "album" ? "album-row" : "song-row"}
-                onClick={item.type === "album" ? () => openPopup(item) : undefined}
-              >
+            {songs.map((song) => (
+              <tr key={song._id} className="song-row">
                 <td>
-                  <img src={item.image} alt={item.nom} className="item-image" />
+                  <img
+                    src={song.image}
+                    alt={song.nom}
+                    className="item-image"
+                  />
                 </td>
                 <td>
-                  {item.nom}
+                  {song.nom}
                   <div className="item-details">
-                    {item.type === "song" &&
-                      item.featuring &&
-                      item.featuring.length > 0 && (
-                        <span>(feat. {item.featuring.join(", ")})</span>
-                      )}
-                    <span className="item-date">{item.dateDeCreation}</span>
-                    {item.type === "song" && item.albumName && (
-                      <span className="item-album">Album: {item.albumName}</span>
+                    {song.featuring && song.featuring.length > 0 && (
+                      <span>(feat. {song.featuring.join(", ")})</span>
                     )}
+                    <span className="item-date">{song.dateDeCreation}</span>
+                    <span className="item-album">Genre: {song.genre}</span>
                   </div>
                 </td>
               </tr>
@@ -84,9 +61,6 @@ const DataTable = () => {
           </tbody>
         </table>
       </div>
-
-      {/* Popup basique */}
-      {selectedAlbum && <Popup album={selectedAlbum} onClose={closePopup} />}
     </div>
   );
 };
